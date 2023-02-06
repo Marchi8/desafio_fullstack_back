@@ -8,7 +8,7 @@ const addFriendController = async (req: Request, res: Response) => {
 
         const friend = await addFriendService({ name, email, phone }, id)
 
-        return res.status(201).json({ message: friend })
+        return res.status(201).json(friend)
     } catch (error) {
         if (error instanceof Error) {
             return res.status(400).send({

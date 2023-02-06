@@ -38,7 +38,7 @@ const addFriendService = async ({ name, email, phone }: IFriendRequest, id: stri
 
     await friendsRepository.save(contact);
 
-    return `${contact.name} has been added to friend list`
+    return contact
 }
 
 export default addFriendService
