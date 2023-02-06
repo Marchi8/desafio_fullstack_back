@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken";
 import "dotenv/config";
 import { AppError } from "../../errors/appError";
 
-const userLoginService = async ({ email, password }: IUserLogin): Promise<String> => {
+const userLoginService = async ({ email, password }: IUserLogin): Promise<{}> => {
     const userRepository = AppDataSource.getRepository(User)
     const users = await userRepository.findOneBy({ email: email })
 
@@ -23,7 +23,11 @@ const userLoginService = async ({ email, password }: IUserLogin): Promise<String
         expiresIn: "1d"
     })
 
-    return token
+    const id = {
+        ...users, password: undefined
+    }
+
+    return { token, user: id }
 }
 
 export default userLoginService
