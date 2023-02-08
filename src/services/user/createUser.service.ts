@@ -33,6 +33,7 @@ const createUserService = async ({ name, email, phone, password, isAdm }: IUserR
     user.password = bcrypt.hashSync(password, 10);
     user.isAdm = isAdm;
     user.isActive = true;
+    user.createdAt = new Date()
 
     userRepository.create(user)
     await userRepository.save(user)

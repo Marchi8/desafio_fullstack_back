@@ -34,6 +34,7 @@ const addFriendService = async ({ name, email, phone }: IFriendRequest, id: stri
         name: name,
         userId: id,
         friendId: user.id,
+        updatedAt: new Date()
     });
 
     await friendsRepository.save(contact);
