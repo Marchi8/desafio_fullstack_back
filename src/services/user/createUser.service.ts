@@ -11,7 +11,19 @@ const createUserService = async ({ name, email, phone, password, isAdm }: IUserR
     const emailAlreadyExists = users.find(user => user.email === email)
 
     if (emailAlreadyExists) {
-        throw new AppError("Email Already Exists", 400)
+        throw new AppError("Email já cadastrado", 400)
+    }
+
+    const phoneAlreadyExists = users.find(user => user.phone === phone)
+
+    if (phoneAlreadyExists) {
+        throw new AppError("Telefone já cadastrado", 400)
+    }
+
+    const nameAlreadyExists = users.find(user => user.name === name)
+
+    if (nameAlreadyExists) {
+        throw new AppError("Nome já cadastrado", 400)
     }
 
     const user = new User()

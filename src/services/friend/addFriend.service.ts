@@ -10,22 +10,22 @@ const addFriendService = async ({ name, email, phone }: IFriendRequest, id: stri
     const userId = await userRepository.findOneBy({ id: id });
 
     if (!userId) {
-        throw new AppError("Incorrect UserId", 404);
+        throw new AppError("Usuário não encontrado", 404);
     }
     const user = await userRepository.findOneBy({ name: name });
 
     if (!user) {
-        throw new AppError("User not found", 404);
+        throw new AppError("Usuário não encontrado", 404);
     }
 
     if (user.id === id) {
-        throw new AppError("Cannot add own user", 404);
+        throw new AppError("Impossível adicionar a si mesmo", 404);
     }
 
     const friendExists = await friendsRepository.findOneBy({ friendId: user.id });
 
     if (friendExists) {
-        throw new AppError("Friend already exists", 404);
+        throw new AppError("Usuário já adicionado", 404);
     }
 
     const contact = friendsRepository.create({

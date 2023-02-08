@@ -7,7 +7,7 @@ const deleteUserService = async (id: string) => {
     const users = await userRepository.findOneBy({ id: id })
 
     if (!users?.isActive) {
-        throw new AppError("User not found", 401)
+        throw new AppError("Usuário não encontrado", 401)
     }
 
     await userRepository.update(id, { isActive: false })

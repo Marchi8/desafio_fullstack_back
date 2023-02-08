@@ -9,19 +9,19 @@ const updatePhoneFriendService = async ({ phone }: IFriendUpdate, id: string, id
     const friendsRepository = AppDataSource.getRepository(Friends)
 
     if (!phone) {
-        throw new AppError("Phone field not provided", 404)
+        throw new AppError("Campo telefone obrigatório", 404)
     }
 
     const user = await userRepository.findOneBy({ id: id })
 
     if (!user) {
-        throw new AppError("User Not Found", 404)
+        throw new AppError("Usuário não encontrado", 404)
     }
 
     const friend = await friendsRepository.findOneBy({ friendId: idFriend })
 
     if (!friend) {
-        throw new AppError("Friend not found", 404)
+        throw new AppError("Usuário não encontrado", 404)
     }
 
     await friendsRepository.update(friend.id, {
@@ -29,7 +29,7 @@ const updatePhoneFriendService = async ({ phone }: IFriendUpdate, id: string, id
         updatedAt: new Date(),
     });
 
-    return { message: "User Updated" }
+    return { message: "Contato Atualizado" }
 }
 
 export default updatePhoneFriendService

@@ -10,7 +10,7 @@ const updateUserService = async (update: Partial<User>, id: string): Promise<Arr
         updatedAt: new Date(),
     })
 
-    return [{ message: "User updated" }, 200]
+    return [{ message: "Usuário atualizado" }, 200]
 }
 
 export default updateUserService

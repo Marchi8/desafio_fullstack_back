@@ -10,13 +10,13 @@ const deleteFriendService = async (id: string, idFriend: string) => {
     const user = await userRepository.findOneBy({ id: id })
 
     if (!user) {
-        throw new AppError("User Not Found", 404)
+        throw new AppError("Usuário não encontrado", 404)
     }
 
     const friend = await friendsRepository.findOneBy({ friendId: idFriend })
 
     if (!friend) {
-        throw new AppError("Friend not found", 404)
+        throw new AppError("Usuário não encontrado", 404)
     }
 
     await friendsRepository.delete(friend.id)
