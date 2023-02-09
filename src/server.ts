@@ -8,10 +8,6 @@ import AppDataSource from "./data-source";
             console.error("Error during Data Source initialization", err)
         })
 
-    const cors = require('cors')
-
-    app.use(cors())
-
     app.listen(PORT, () => {
         console.log(`Servidor executando ${PORT}`)
     })

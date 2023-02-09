@@ -4,12 +4,12 @@ import { User } from "../../entities/user.entity";
 import { AppError } from "../../errors/appError";
 import { IFriendUpdate } from "../../interfaces/friends";
 
-const updatePhoneFriendService = async ({ phone }: IFriendUpdate, id: string, idFriend: string) => {
+const updatePhoneFriendService = async (data: Partial<IFriendUpdate>, id: string, idFriend: string) => {
     const userRepository = AppDataSource.getRepository(User)
     const friendsRepository = AppDataSource.getRepository(Friends)
 
-    if (!phone) {
-        throw new AppError("Campo telefone obrigatório", 404)
+    if (!data) {
+        throw new AppError("Dados não encontrados", 404)
     }
 
     const user = await userRepository.findOneBy({ id: id })
@@ -25,7 +25,7 @@ const updatePhoneFriendService = async ({ phone }: IFriendUpdate, id: string, id
     }
 
     await friendsRepository.update(friend.id, {
-        phone: phone,
+        ...data,
         updatedAt: new Date(),
     });
 

@@ -12,5 +12,7 @@ export interface IFriendResponse {
 }
 
 export interface IFriendUpdate {
-    phone: string
+    phone?: string
+    email?: string
+    name?: string
 }

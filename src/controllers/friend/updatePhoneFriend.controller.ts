@@ -3,11 +3,11 @@ import updatePhoneFriendService from "../../services/friend/updatePhoneFriend.se
 
 const updatePhoneFriendController = async (req: Request, res: Response) => {
     try {
-        const { phone } = req.body
+        const data = req.body
         const { id } = req.user
         const { idFriend } = req.params
 
-        const user = await updatePhoneFriendService({ phone }, id, idFriend)
+        const user = await updatePhoneFriendService(data, id, idFriend)
 
         return res.status(200).json(user)
     } catch (error) {

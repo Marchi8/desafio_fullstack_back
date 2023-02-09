@@ -16,7 +16,6 @@ export interface IUser {
     updatedAt: Date
 }
 
-
 export interface IUserLogin {
     email: string
     password: string
