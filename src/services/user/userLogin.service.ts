@@ -24,7 +24,8 @@ const userLoginService = async ({ email, password }: IUserLogin): Promise<{}> =>
     })
 
     const id = {
-        ...users, password: undefined
+        ...users,
+        password: undefined
     }
 
     return { token, user: id }
